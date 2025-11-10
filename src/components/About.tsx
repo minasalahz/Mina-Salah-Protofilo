@@ -12,27 +12,57 @@ const About = () => {
   return (
     <section id="about" className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             About Me
           </h2>
 
-          <Card className="bg-card/50 backdrop-blur-sm border-primary/20 mb-12">
-            <CardContent className="p-8">
-              <p className="text-lg text-foreground/80 leading-relaxed mb-6">
-                Graduated from Assiut University with a degree in Computer Science. Full Stack Developer 
-                specializing in .NET (C#) and modern web technologies like Angular and React. Experienced 
-                in building robust, secure, and maintainable software solutions using ASP.NET Core, Entity 
-                Framework Core, and SQL Server.
-              </p>
-              <p className="text-lg text-foreground/80 leading-relaxed">
-                Passionate about building efficient, secure, and maintainable software solutions. Strong 
-                advocate for clean architecture, SOLID principles, and writing testable code. Currently 
-                training at ITI Assiut as part of Code Camp 2025, further enhancing my full-stack 
-                development skills.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+            {/* Personal Image */}
+            <div className="order-2 md:order-1 flex justify-center">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+                <div className="relative w-72 h-72 rounded-2xl overflow-hidden border-4 border-background shadow-2xl">
+                  {/* Placeholder for personal image - replace with actual image */}
+                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center backdrop-blur-sm">
+                    <div className="text-center">
+                      <div className="text-8xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                        MS
+                      </div>
+                      <p className="text-sm text-muted-foreground">Add your photo here</p>
+                    </div>
+                  </div>
+                  {/* Uncomment and use this when you have your image:
+                  <img 
+                    src="/path-to-your-image.jpg" 
+                    alt="Mina Salah - Full Stack Developer"
+                    className="w-full h-full object-cover"
+                  />
+                  */}
+                </div>
+              </div>
+            </div>
+
+            {/* About Text */}
+            <div className="order-1 md:order-2">
+              <Card className="bg-card/50 backdrop-blur-sm border-primary/20">
+                <CardContent className="p-8">
+                  <p className="text-lg text-foreground/80 leading-relaxed mb-6">
+                    Graduated from Assiut University with a degree in Computer Science. Full Stack Developer 
+                    specializing in .NET (C#) and modern web technologies like Angular and React. Experienced 
+                    in building robust, secure, and maintainable software solutions using ASP.NET Core, Entity 
+                    Framework Core, and SQL Server.
+                  </p>
+                  <p className="text-lg text-foreground/80 leading-relaxed">
+                    Passionate about building efficient, secure, and maintainable software solutions. Strong 
+                    advocate for clean architecture, SOLID principles, and writing testable code. Currently 
+                    training at ITI Assiut as part of Code Camp 2025, further enhancing my full-stack 
+                    development skills.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlights.map((item, index) => (

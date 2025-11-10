@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -14,6 +15,7 @@ const Index = () => {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+        <AnimatedBackground />
         <Navigation />
         <Hero />
         <About />

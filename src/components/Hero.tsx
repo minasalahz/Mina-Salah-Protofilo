@@ -47,9 +47,11 @@ const Hero = () => {
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
       
-      {/* Floating shapes */}
+      {/* Floating shapes with enhanced animations */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
 
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="animate-fade-in">
