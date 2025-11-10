@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/ThemeProvider";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -11,18 +12,20 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Experience />
-      <Education />
-      <Certificates />
-      <Contact />
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+        <Navigation />
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Experience />
+        <Education />
+        <Certificates />
+        <Contact />
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 };
 
