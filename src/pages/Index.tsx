@@ -1,11 +1,13 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import FloatingElements from "@/components/FloatingElements";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
+import AdditionalProjects from "@/components/AdditionalProjects";
+import Skills from "@/components/Skills";
 import Education from "@/components/Education";
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
@@ -16,12 +18,14 @@ const Index = () => {
     <ThemeProvider>
       <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <AnimatedBackground />
+        <FloatingElements />
         <Navigation />
         <Hero />
         <About />
-        <Projects />
-        <Skills />
         <Experience />
+        <Projects />
+        <AdditionalProjects />
+        <Skills />
         <Education />
         <Certificates />
         <Contact />

@@ -1,4 +1,3 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase } from "lucide-react";
 
@@ -21,42 +20,51 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-secondary/20">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+    <section id="experience" className="py-20">
+      <div className="container mx-auto px-6 max-w-5xl">
+        <h2 className="font-bold mb-16 animate-fade-in" style={{fontSize: 'var(--font-size-h2)', color: 'var(--color-text-primary)'}}>
           Experience
         </h2>
 
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="space-y-12">
           {experiences.map((exp, index) => (
-            <Card 
+            <div 
               key={index}
-              className="bg-card border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="pl-8 animate-slide-in-up"
+              style={{
+                borderLeft: '2px solid var(--color-border)',
+                animationDelay: `${index * 0.2}s`,
+              }}
             >
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-lg">
-                    <Briefcase className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-xl text-foreground mb-1">{exp.role}</CardTitle>
-                    <CardDescription className="text-primary font-medium">{exp.company}</CardDescription>
-                    <p className="text-sm text-muted-foreground mt-1">{exp.period}</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-foreground/80 mb-4">{exp.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {exp.skills.map((skill, i) => (
-                    <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/30">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-2xl font-bold" style={{color: 'var(--color-text-primary)'}}>{exp.role}</h3>
+                <span className="text-sm" style={{color: 'var(--color-text-secondary)'}}>{exp.period}</span>
+              </div>
+              <p className="text-lg font-medium mb-4" style={{color: 'var(--color-accent)'}}>{exp.company}</p>
+              <p className="mb-6 leading-relaxed" style={{color: 'var(--color-text-secondary)', lineHeight: 'var(--line-height-body)'}}>{exp.description}</p>
+              
+              <div className="flex flex-wrap gap-2">
+                {exp.skills.map((skill, i) => (
+                  <Badge 
+                    key={i} 
+                    className="text-xs font-medium transition-colors border"
+                    style={{
+                      backgroundColor: 'rgba(139, 92, 246, 0.08)',
+                      color: 'var(--color-accent)',
+                      borderColor: 'var(--color-border)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.15)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.08)';
+                    }}
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

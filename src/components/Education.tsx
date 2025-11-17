@@ -1,4 +1,3 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { GraduationCap } from "lucide-react";
 
 const Education = () => {
@@ -12,7 +11,6 @@ const Education = () => {
         "Entity Framework Core and SQL Server",
         "Angular for modern frontend development",
         "RESTful API design and implementation",
-        "Clean Architecture and SOLID principles"
       ],
     },
     {
@@ -20,64 +18,51 @@ const Education = () => {
       institution: "Assiut University",
       period: "Sep 2020 - Jul 2024",
       grade: "3.3 GPA",
-      project: "Graduation Project: VS Code Extension for the Visually Impaired",
       details: [
-        "Developed AI-powered VS Code extension",
-        "Implemented voice navigation features",
+        "Graduation Project: VS Code Extension for the Visually Impaired",
+        "AI-powered voice navigation features",
         "Integrated OpenAI for intelligent error handling",
-        "Created accessibility shortcuts and tools"
+        "Clean Architecture and SOLID principles",
       ],
     },
   ];
 
   return (
     <section id="education" className="py-20">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+      <div className="container mx-auto px-6 max-w-5xl">
+        <h2 className="font-bold mb-16 animate-fade-in" style={{fontSize: 'var(--font-size-h2)', color: 'var(--color-text-primary)'}}>
           Education
         </h2>
 
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="space-y-12">
           {education.map((edu, index) => (
-            <Card 
+            <div 
               key={index}
-              className="bg-card border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="pl-8 animate-slide-in-up"
+              style={{
+                borderLeft: '2px solid var(--color-border)',
+                animationDelay: `${index * 0.2}s`,
+              }}
             >
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-lg">
-                    <GraduationCap className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-xl text-foreground mb-1">{edu.degree}</CardTitle>
-                    <CardDescription className="text-primary font-medium">{edu.institution}</CardDescription>
-                    <div className="flex flex-wrap gap-2 mt-1">
-                      <p className="text-sm text-muted-foreground">{edu.period}</p>
-                      {edu.grade && (
-                        <>
-                          <span className="text-muted-foreground">•</span>
-                          <p className="text-sm text-muted-foreground">{edu.grade}</p>
-                        </>
-                      )}
-                    </div>
-                  </div>
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold" style={{color: 'var(--color-text-primary)'}}>{edu.degree}</h3>
+                  <p className="text-lg font-medium mt-1" style={{color: 'var(--color-accent)'}}>{edu.institution}</p>
                 </div>
-              </CardHeader>
-              <CardContent>
-                {edu.project && (
-                  <p className="text-accent font-medium mb-3">{edu.project}</p>
-                )}
-                <ul className="space-y-2">
-                  {edu.details.map((detail, i) => (
-                    <li key={i} className="text-foreground/80 flex items-start">
-                      <span className="text-primary mr-2">▸</span>
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+                <span className="text-sm" style={{color: 'var(--color-text-secondary)'}}>{edu.period}</span>
+              </div>
+              {edu.grade && (
+                <p className="text-sm font-medium mb-4" style={{color: 'var(--color-accent)'}}>{edu.grade}</p>
+              )}
+              <ul className="space-y-2">
+                {edu.details.map((detail, i) => (
+                  <li key={i} className="flex items-start" style={{color: 'var(--color-text-secondary)'}}>
+                    <span className="mr-3 mt-1" style={{color: 'var(--color-accent)'}}>▸</span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>

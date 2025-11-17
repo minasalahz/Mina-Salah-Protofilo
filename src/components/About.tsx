@@ -1,101 +1,63 @@
 import { Code2, Database, Layout, Zap } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 
 const About = () => {
   const highlights = [
     { icon: Code2, title: "Clean Code", desc: "SOLID principles & best practices" },
     { icon: Database, title: "Backend Expert", desc: ".NET Core & Entity Framework" },
-    { icon: Layout, title: "Modern Frontend", desc: "Angular & React ecosystems" },
+    { icon: Layout, title: "Modern Frontend", desc: "React & Angular" },
     { icon: Zap, title: "Performance", desc: "Optimized & scalable solutions" },
   ];
 
   return (
-    <section id="about" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            About Me
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
-            {/* Personal Image */}
-            <div className="order-2 md:order-1 flex justify-center">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
-                <div className="relative w-72 h-72 rounded-2xl overflow-hidden border-4 border-background shadow-2xl">
-                  {/* Placeholder for personal image - replace with actual image */}
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center backdrop-blur-sm">
-                    <div className="text-center">
-                      <div className="text-8xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
-                        MS
-                      </div>
-                      <p className="text-sm text-muted-foreground">Add your photo here</p>
-                    </div>
-                  </div>
-                  {/* Uncomment and use this when you have your image:
-                  <img 
-                    src="/path-to-your-image.jpg" 
-                    alt="Mina Salah - Full Stack Developer"
-                    className="w-full h-full object-cover"
-                  />
-                  */}
-                </div>
-              </div>
+    <section id="about" className="py-16 md:py-24" style={{borderTop: '1px solid var(--color-border)'}}>
+      <div className="container mx-auto px-6 md:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          {/* Left side - Text */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="font-black mb-2" style={{fontSize: 'var(--font-size-h2)', color: 'var(--color-text-primary)'}}>
+                About Me
+              </h2>
+              <div className="w-12 h-1 rounded" style={{backgroundColor: 'var(--color-accent)'}}></div>
             </div>
 
-            {/* About Text */}
-            <div className="order-1 md:order-2">
-              <Card className="bg-card/50 backdrop-blur-sm border-primary/20">
-                <CardContent className="p-8">
-                  <p className="text-lg text-foreground/80 leading-relaxed mb-6">
-                    Graduated from Assiut University with a degree in Computer Science. Full Stack Developer 
-                    specializing in .NET (C#) and modern web technologies like Angular and React. Experienced 
-                    in building robust, secure, and maintainable software solutions using ASP.NET Core, Entity 
-                    Framework Core, and SQL Server.
-                  </p>
-                  <p className="text-lg text-foreground/80 leading-relaxed">
-                    Passionate about building efficient, secure, and maintainable software solutions. Strong 
-                    advocate for clean architecture, SOLID principles, and writing testable code. Currently 
-                    training at ITI Assiut as part of Code Camp 2025, further enhancing my full-stack 
-                    development skills.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+            <p className="leading-relaxed" style={{fontSize: 'var(--font-size-body-lg)', color: 'var(--color-text-secondary)', lineHeight: 'var(--line-height-body)'}}>
+              I'm a Full Stack Developer specializing in .NET (C#, ASP.NET Core) and modern web technologies. 
+              I build scalable, efficient, and maintainable web applications using clean architecture and SOLID principles.
+            </p>
+            
+            <p className="leading-relaxed" style={{fontSize: 'var(--font-size-body-lg)', color: 'var(--color-text-secondary)', lineHeight: 'var(--line-height-body)'}}>
+              Graduated from Assiut University with a degree in Computer Science. Currently training at ITI Assiut 
+              as part of Code Camp 2025. Passionate about writing testable, secure code and building efficient software solutions.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Right side - Highlights Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {highlights.map((item, index) => (
-              <Card 
+              <div
                 key={index}
-                className="bg-secondary/50 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="p-4 md:p-6 rounded-lg transition-all duration-300 group"
+                style={{
+                  border: '1px solid var(--color-border)',
+                  animationDelay: `${index * 0.1}s`,
+                  backgroundColor: 'transparent',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-accent)';
+                  e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                  e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-border)';
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
               >
-                <CardContent className="p-6 text-center">
-                  <item.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2 text-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </CardContent>
-              </Card>
+                <item.icon className="h-8 w-8 mb-3 group-hover:scale-110 transition-transform" style={{color: 'var(--color-accent)'}} />
+                <h3 className="text-base md:text-lg font-bold mb-1" style={{color: 'var(--color-text-primary)'}}>{item.title}</h3>
+                <p className="text-sm" style={{color: 'var(--color-text-secondary)'}}>{item.desc}</p>
+              </div>
             ))}
-          </div>
-
-          <div className="mt-12">
-            <h3 className="text-2xl font-semibold mb-6 text-center text-primary">Core Expertise</h3>
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                "OOP", "SOLID Principles", "Clean Architecture", "REST APIs", 
-                "ASP.NET Core", "Entity Framework", "SQL Server", "Angular",
-                "React", "TypeScript", "Git", "Azure DevOps"
-              ].map((skill, index) => (
-                <span 
-                  key={index}
-                  className="px-4 py-2 bg-primary/10 border border-primary/30 rounded-full text-sm text-primary hover:bg-primary/20 transition-colors duration-300"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </div>

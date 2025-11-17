@@ -1,136 +1,176 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Download, ChevronDown } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState("");
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const phrases = [
-    "Full Stack Developer",
-    ".NET | C# | ASP.NET Core",
-    "Angular & Modern Web",
-  ];
-
-  useEffect(() => {
-    const currentPhrase = phrases[phraseIndex];
-    const timeout = setTimeout(
-      () => {
-        if (!isDeleting) {
-          if (displayText.length < currentPhrase.length) {
-            setDisplayText(currentPhrase.slice(0, displayText.length + 1));
-          } else {
-            setTimeout(() => setIsDeleting(true), 2000);
-          }
-        } else {
-          if (displayText.length > 0) {
-            setDisplayText(displayText.slice(0, -1));
-          } else {
-            setIsDeleting(false);
-            setPhraseIndex((prev) => (prev + 1) % phrases.length);
-          }
-        }
-      },
-      isDeleting ? 50 : 100
-    );
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, phraseIndex]);
-
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-      
-      {/* Floating shapes with enhanced animations */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
-      <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
-      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
+    <section className="relative min-h-screen overflow-hidden flex items-center justify-center">
+      {/* Hero background gradient (dark mode only, light mode uses global background) */}
+      <div
+        className="absolute inset-0 dark:block hidden"
+        style={{
+          background: 'linear-gradient(180deg, #0b0620 0%, #180a2f 40%, #12061b 100%)',
+        }}
+      />
+      {/* Animated background with starfield (dark mode only) */}
+      <div className="absolute inset-0 overflow-hidden dark:block hidden">
+        {/* Stars (denser, mixed sizes) */}
+        {Array.from({ length: 120 }).map((_, i) => {
+          const top = Math.random() * 100;
+          const left = Math.random() * 100;
+          const dur = (1.2 + Math.random() * 2.8).toFixed(2);
+          const delay = (Math.random() * 3).toFixed(2);
+          const sizeRand = Math.random();
+          const size = sizeRand < 0.7 ? 2 : sizeRand < 0.95 ? 3.5 : 5; // px
+          return (
+            <div
+              key={i}
+              className={`absolute star ${size <= 2 ? 'star-small' : size <= 3.5 ? 'star-medium' : 'star-large'}`}
+              style={{
+                top: `${top}%`,
+                left: `${left}%`,
+                width: `${size}px`,
+                height: `${size}px`,
+                animation: `twinkle ${dur}s ease-in-out ${delay}s infinite alternate`,
+                opacity: 0.8,
+              }}
+            />
+          );
+        })}
 
-      <div className="relative z-10 container mx-auto px-6 text-center">
-        <div className="animate-fade-in">
-          {/* Profile image placeholder */}
-          <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-primary to-accent p-1">
-            <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-4xl font-bold text-primary">
-              MS
+        {/* Gradient orbs */}
+        <div
+          className="absolute top-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30 animate-pulse"
+          style={{ animation: "float 20s infinite ease-in-out" }}
+        />
+        <div
+          className="absolute bottom-32 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-30 animate-pulse"
+          style={{ animation: "float 25s infinite ease-in-out", animationDelay: "2s" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl opacity-20"
+          style={{ animation: "float 30s infinite ease-in-out", animationDelay: "4s" }}
+        />
+      </div>
+
+      <div className="container mx-auto px-6 py-24 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-7 text-left space-y-6 max-w-3xl">
+            {/* Greeting */}
+            <div className="space-y-4">
+              <p className="text-base sm:text-lg font-medium uppercase tracking-wider" style={{color: 'var(--color-accent)'}}>
+                Hi, I'm <span className="font-semibold" style={{color: 'var(--color-accent)'}}>Mina Salah</span>
+              </p>
+
+              {/* Main heading - fluid typography with gradient */}
+              <h1 
+                className="font-black leading-tight bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent"
+                style={{fontSize: 'clamp(2.5rem, 10vw, 5.5rem)', fontWeight: '900', letterSpacing: '-0.02em'}}
+              >
+                Web Developer
+              </h1>
+            </div>
+
+            {/* Bio */}
+            <p className="leading-relaxed max-w-2xl" style={{fontSize: 'var(--font-size-body-lg)', color: 'var(--color-text-secondary)', lineHeight: 'var(--line-height-body)'}}>
+              I build thoughtful, high-quality web experiences that blend form and function.
+              Clean design and seamless functionality guide every decision.
+              Let's bring your vision to life — one pixel at a time.
+            </p>
+
+            {/* CTA Button */}
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-4">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto rounded-lg px-8 py-3 border-2 font-semibold transition-all duration-300 hover:shadow-lg"
+                style={{
+                  borderColor: 'var(--color-accent)',
+                  color: 'var(--color-accent)',
+                  backgroundColor: 'transparent',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                  e.currentTarget.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = 'var(--color-accent)';
+                }}
+                onClick={() => scrollToSection("contact")}
+              >
+                Get in touch
+              </Button>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-6 pt-4 items-center">
+              <a
+                href="https://www.linkedin.com/in/mina-salah-zaki/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-300"
+                style={{color: 'var(--color-text-secondary)'}}
+                title="LinkedIn"
+                aria-label="Visit LinkedIn profile"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--color-accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--color-text-secondary)';
+                }}
+              >
+                <Linkedin className="h-6 w-6" />
+              </a>
+              <a
+                href="https://github.com/MinaSalahZaki"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-300"
+                style={{color: 'var(--color-text-secondary)'}}
+                title="GitHub"
+                aria-label="Visit GitHub profile"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--color-accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--color-text-secondary)';
+                }}
+              >
+                <Github className="h-6 w-6" />
+              </a>
+              <a
+                href="mailto:mina@example.com"
+                className="transition-all duration-300"
+                style={{color: 'var(--color-text-secondary)'}}
+                title="Email"
+                aria-label="Send an email"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--color-accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--color-text-secondary)';
+                }}
+              >
+                <Mail className="h-6 w-6" />
+              </a>
             </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-            Mina Salah
-          </h1>
-
-          <div className="h-16 md:h-20 mb-8">
-            <p className="text-xl md:text-2xl text-muted-foreground font-mono">
-              {displayText}
-              <span className="animate-pulse">|</span>
-            </p>
-          </div>
-
-          <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Hi — I'm Mina Salah, a Full Stack Developer specialized in .NET (C#, ASP.NET Core) and Angular. 
-            I build scalable, efficient, and maintainable web apps following clean architecture and SOLID principles.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
-              onClick={() => window.open("/resume.pdf", "_blank")}
-            >
-              <Download className="mr-2 h-5 w-5" />
-              Download Resume
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-105"
-              onClick={() => scrollToSection("contact")}
-            >
-              <Mail className="mr-2 h-5 w-5" />
-              Contact Me
-            </Button>
-          </div>
-
-          <div className="flex justify-center gap-6">
-            <a 
-              href="https://github.com/MinaSalahZaki" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-            >
-              <Github className="h-6 w-6" />
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/mina-salah-zaki/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText("mina.dev@email.com");
-              }}
-              className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-            >
-              <Mail className="h-6 w-6" />
-            </button>
-          </div>
+          {/* right column spacer so floating astronaut sits to the right visually */}
+          <div className="hidden lg:block lg:col-span-5" aria-hidden />
         </div>
 
+        {/* Scroll indicator */}
         <button
           onClick={() => scrollToSection("about")}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+          className="absolute bottom-10 left-6 md:left-1/2 md:-translate-x-1/2 animate-bounce"
+          style={{color: 'var(--color-accent)'}}
+          aria-label="Scroll to next section"
         >
-          <ChevronDown className="h-8 w-8 text-primary" />
+          <ChevronDown className="h-8 w-8" />
         </button>
       </div>
     </section>

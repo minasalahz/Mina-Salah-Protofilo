@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Award } from "lucide-react";
 
 const Certificates = () => {
@@ -13,32 +12,41 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" className="py-20 bg-secondary/20">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+    <section id="certificates" className="py-20">
+      <div className="container mx-auto px-6 max-w-5xl">
+        <h2 className="font-bold mb-16 animate-fade-in" style={{fontSize: 'var(--font-size-h2)', color: 'var(--color-text-primary)'}}>
           Certificates & Achievements
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {certificates.map((cert, index) => (
-            <Card 
+            <div 
               key={index}
-              className="bg-card border-primary/20 hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
-              style={{ animationDelay: `${index * 0.05}s` }}
+              className="p-6 border rounded-lg transition-all duration-300 group animate-slide-in-up"
+              style={{
+                borderColor: 'var(--color-border)',
+                animationDelay: `${index * 0.1}s`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--color-accent)';
+                e.currentTarget.style.boxShadow = 'var(--shadow-glow)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--color-border)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
-              <CardContent className="p-6">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
-                    <Award className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{cert.name}</h3>
-                    <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-                    <p className="text-xs text-primary mt-1">{cert.year}</p>
-                  </div>
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg flex-shrink-0 transition-colors" style={{backgroundColor: 'rgba(139, 92, 246, 0.08)'}}>
+                  <Award className="h-5 w-5" style={{color: 'var(--color-accent)'}} />
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg" style={{color: 'var(--color-text-primary)'}}>{cert.name}</h3>
+                  <p className="text-sm font-medium mt-2" style={{color: 'var(--color-accent)'}}>{cert.issuer}</p>
+                  <p className="text-xs mt-1" style={{color: 'var(--color-text-secondary)'}}>{cert.year}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
